@@ -1,1 +1,1 @@
-# carrito-compras
+# Carrito de compras diseñado por Lucas Saavedra
