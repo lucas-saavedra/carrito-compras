@@ -98,6 +98,8 @@ do {
     case 7:
       filtroCatString = prompt('Escriba una categoria')
       carritoFiltrado = filtroCat(carrito, filtroCatString.toLowerCase());
+      console.log(`Cantidad de productos filtrados: ${carrito.length}`);
+      console.log(`Filtrado por ${filtroCatString}`);
       for (const e of carritoFiltrado) {
         console.log(`Nombre ${e.nombre} |Precio: $${e.precio} |Categoria: ${e.categoria}`)
       }
