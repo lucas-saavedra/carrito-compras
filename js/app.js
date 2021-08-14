@@ -55,11 +55,11 @@ const filtroCat = (array, categoria) => {
 alert('Seleccione que desea comprar o hacer')
 do {
   switch (Number(prompt(`
-    [${producto1.id}] ${producto1.nombre} | $ ${producto1.precio}
-    [${producto2.id}] ${producto2.nombre} | $ ${producto2.precio}
-    [${producto3.id}] ${producto3.nombre} | $ ${producto3.precio}
-    [${producto4.id}] ${producto4.nombre} | $ ${producto4.precio}
-    [${producto5.id}] ${producto5.nombre} | $ ${producto5.precio}
+    [${producto1.id}] ${producto1.nombre} | $ ${producto1.precio} | Cat: ${producto1.categoria}
+    [${producto2.id}] ${producto2.nombre} | $ ${producto2.precio} | Cat: ${producto2.categoria}
+    [${producto3.id}] ${producto3.nombre} | $ ${producto3.precio} | Cat: ${producto3.categoria}
+    [${producto4.id}] ${producto4.nombre} | $ ${producto4.precio} | Cat: ${producto4.categoria}
+    [${producto5.id}] ${producto5.nombre} | $ ${producto5.precio} | Cat: ${producto5.categoria}
     [6] Mostrar carrito
     [7] Filtrar carrito por categoria
     [8] Salir
@@ -84,18 +84,20 @@ do {
         carrito.push(producto4);
       }
       break;
-      case 5:
+    case 5:
       if (producto5.comprarProducto()) {
         carrito.push(producto5);
       }
       break;
     case 6:
+      console.log(`Cantidad de productos: ${carrito.length}`);
       for (const e of carrito) {
         console.log(`Nombre ${e.nombre} |Precio: $${e.precio} |Categoria: ${e.categoria}`)
       }
       break;
     case 7:
-      carritoFiltrado = filtroCat(carrito, prompt('Escriba una categoria'));
+      filtroCatString = prompt('Escriba una categoria')
+      carritoFiltrado = filtroCat(carrito, filtroCatString.toLowerCase());
       for (const e of carritoFiltrado) {
         console.log(`Nombre ${e.nombre} |Precio: $${e.precio} |Categoria: ${e.categoria}`)
       }
