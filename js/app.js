@@ -33,11 +33,11 @@ salida = false;
 carrito = [];
 
 /* instancio los productos */
-producto1 = new Producto(1, 'Lampara', 3000, 0, 'iluminacion', 'blanco');
+producto1 = new Producto(1, 'Lampara', 3000, 1, 'iluminacion', 'blanco');
 producto2 = new Producto(2, 'Ventilador', 5000, 10, 'acondicionamiento', 'negro');
 producto3 = new Producto(3, 'Sillon', 7000, 3, 'muebles', 'gris');
 producto4 = new Producto(4, 'Mesa de luz', 3000, 0, 'iluminacion', 'marron');
-producto5 = new Producto(4, 'Pelota', 1000, 3, 'futbol', 'marron');
+producto5 = new Producto(5, 'Pelota', 1000, 3, 'futbol', 'marron');
 
 /* funciones para trabajar el carrito */
 const agregarCarrito = (producto) => {
@@ -59,21 +59,20 @@ do {
     [${producto2.id}] ${producto2.nombre} | $ ${producto2.precio}
     [${producto3.id}] ${producto3.nombre} | $ ${producto3.precio}
     [${producto4.id}] ${producto4.nombre} | $ ${producto4.precio}
-    [5] Mostrar carrito
-    [6] Filtrar carrito por categoria
-    [7] Salir
+    [${producto5.id}] ${producto5.nombre} | $ ${producto5.precio}
+    [6] Mostrar carrito
+    [7] Filtrar carrito por categoria
+    [8] Salir
     `))) {
     case 1:
       if (producto1.comprarProducto()) {
         carrito.push(producto1);
       }
-
       break;
     case 2:
       if (producto2.comprarProducto()) {
         carrito.push(producto2);
       }
-
       break;
     case 3:
       if (producto3.comprarProducto()) {
@@ -85,19 +84,28 @@ do {
         carrito.push(producto4);
       }
       break;
-    case 5:
-      console.log(carrito);
+      case 5:
+      if (producto5.comprarProducto()) {
+        carrito.push(producto5);
+      }
       break;
     case 6:
-      carritoFiltrado = filtroCat(carrito, prompt('Escriba una categoria'));
-      console.log(carritoFiltrado);
+      for (const e of carrito) {
+        console.log(`Nombre ${e.nombre} |Precio: $${e.precio} |Categoria: ${e.categoria}`)
+      }
       break;
     case 7:
+      carritoFiltrado = filtroCat(carrito, prompt('Escriba una categoria'));
+      for (const e of carritoFiltrado) {
+        console.log(`Nombre ${e.nombre} |Precio: $${e.precio} |Categoria: ${e.categoria}`)
+      }
+      break;
+    case 8:
       alert('Gracias por usar nuetro programa');
       salida = true;
       break;
     default:
-      alert = confirm('Esa opcion no existe!')
+      alert('Esa opcion no existe!')
       break;
   }
 } while (salida == false);
