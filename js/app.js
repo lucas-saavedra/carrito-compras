@@ -51,11 +51,16 @@ productos.forEach(e => {
   listaProd.appendChild(tr)
 })
 do {
-  idIngresado = Number(prompt(productos.map((e) => `id:${e.id}) ${e.titulo} $${e.precio} `).join('|')));
+  idIngresado = Number(prompt(productos.map((e) => `id:${e.id}) ${e.titulo} $${e.precio} `).join(' | ')));
   producto_nuevo = productos.find((e) => e.id === idIngresado);
-  carrito.agregarProductos(producto_nuevo);
-  otroProducto = confirm('Desea comprar algo más?')
-} while (otroProducto)
+  if (producto_nuevo == null) {
+    alert('Ese producto no existe!')
+    otroProducto = confirm('Desea comprar algo más?')
+  } else {
+    carrito.agregarProductos(producto_nuevo);
+  }
+
+} while (otroProducto);
 
 carrito.productos.forEach(e => {
   //CREAMOS ELEMENTOS
