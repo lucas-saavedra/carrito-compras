@@ -13,6 +13,7 @@ let h2 = document.createElement('h2');
 h2.textContent = `Bienvenido! ${nombre}, este es el listado de productos disponibles`;
 h2.setAttribute('class', 'text-center');
 mensaje.appendChild(h2);
+let otroProducto = false;
 
 let listaProd = document.querySelector("#listadoProductos");
 let listaProdCarrito = document.querySelector("#listadoProductosCarrito");
@@ -58,6 +59,7 @@ do {
     otroProducto = confirm('Desea comprar algo más?')
   } else {
     carrito.agregarProductos(producto_nuevo);
+    otroProducto = confirm('Desea comprar algo más?')
   }
 
 } while (otroProducto);
