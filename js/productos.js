@@ -1,59 +1,68 @@
+
 const productos = [{
     'id': 1,
-    'titulo': 'Lampara',
-    'precio': 3000,
-    'cat': 'iluminacion',
-    'color': 'blanco'
+    'title': 'Lampara',
+    'price': 3000,
+    'category': 'iluminacion',
+    'color': 'blanco',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
   },
   {
     'id': 2,
-    'titulo': 'Ventilador',
-    'precio': 5000,
-    'cat': 'acondicionamiento',
-    'color': 'negro'
+    'title': 'Ventilador',
+    'price': 5000,
+    'category': 'acondicionamiento',
+    'color': 'negro',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
   },
   {
     'id': 3,
-    'titulo': 'Sillon',
-    'precio': 7000,
-    'cat': 'muebles',
-    'color': 'gris'
+    'title': 'Sillon',
+    'price': 7000,
+    'category': 'muebles',
+    'color': 'gris',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
   },
   {
     'id': 4,
-    'titulo': 'Mesa de luz',
-    'precio': 3000,
-    'cat': 'iluminacion',
-    'color': 'amariilo'
+    'title': 'Mesa de luz',
+    'price': 3000,
+    'category': 'iluminacion',
+    'color': 'amariilo',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
   },
   {
     'id': 5,
-    'titulo': 'Pelota',
-    'precio': 1000,
+    'title': 'Pelota',
+    'price': 1000,
     'stock': 1,
-    'cat': 'futbol',
-    'color': 'blanco'
+    'category': 'futbol',
+    'color': 'blanco',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
   },
   {
     "id": 6,
-    "titulo": "Anillo de oro",
-    "precio": 50000,
-    "cat": "joyeria",
-    'color': 'amarillo'
-    },
-    {
+    "title": "Anillo de oro",
+    "price": 50000,
+    "category": "joyeria",
+    'color': 'amarillo',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
+  },
+  {
     "id": 7,
-    "titulo": "Taladro inalambrico",
-    "precio": 10000,
-    "cat": "hogar",
-    'color': 'blanco'
-    },
-    {
+    "title": "Taladro inalambrico",
+    "price": 10000,
+    "category": "hogar",
+    'color': 'blanco',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
+  },
+  {
     "id": 8,
-    "titulo": "Pava electrica",
-    "precio": 1500,
-    "cat": "electrodomesticos",
-    'color': 'rojo'
-    },
+    "title": "Pava electrica",
+    "price": 1500,
+    "category": "electrodomesticos",
+    'color': 'rojo',
+    'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
+  },
 
 ];
