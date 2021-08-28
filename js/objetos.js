@@ -7,10 +7,12 @@ class Producto {
         this.stock =null;
         this.category = category;
         this.color = color;
+        this.amount = 0;
     }
     addStock(stock){
         this.stock = stock;
     }
+    
 }
 
 class Carrito {

@@ -1,20 +1,26 @@
-const categorias = ['iluminacion', 'muebles', 'futbol', 'joyeria', 'acondicionamiento'];
-const colores = ['blanco', 'negro', 'gris', 'amarillo', 'rojo'];
 
 let productForm = document.getElementById('productForm');
 let selectCat = document.getElementById('cat');
 let selectcolor = document.getElementById('color');
 let productList = [];
 
-const saveData = () => {
+const listProducts = document.getElementById('listProducts');
+const templateCard = document.getElementById('template-card').content;
+const fragment = document.createDocumentFragment();
+let productListLocal = JSON.parse(localStorage.getItem('productList'));
 
+const notifBody = document.getElementById('notif');
+const templateNotif = document.getElementById('template-notif').content;
+
+const saveData = (e) => {
+    e.preventDefault();
     let title = document.getElementById('title').value;
     let detail = document.getElementById('detail').value;
     let color = document.getElementById('color').value;
     let cat = document.getElementById('cat').value;
     let price = document.getElementById('price').value;
     let producto = new Producto(Math.floor(Math.random() * 101), title, detail, price, cat, color);
-    
+
     if (JSON.parse(localStorage.getItem('productList') !== null)) {
         productList = JSON.parse(localStorage.getItem('productList'));
         productList.push(producto);
@@ -23,25 +29,27 @@ const saveData = () => {
         productList.push(producto);
         localStorage.setItem("productList", JSON.stringify(productList));
     }
+    
     document.getElementById("productForm").reset();
-    notif('Exito');
+    printListProductsLocal(productList)
 }
 
-const notif = (msg) => {
-    div = document.getElementById('notif');
-    div.textContent = msg;
-    div.setAttribute('class', "alert alert-success alert-dismissible my-3");
-    div.setAttribute('role', 'alert')
-    div.setAttribute('id', 'liveAlert')
-
-    button = document.createElement('button');
-    button.setAttribute("type", "button")
-    button.setAttribute("class", "btn-close")
-    button.setAttribute("data-bs-dismiss", "alert")
-    button.setAttribute("aria-label", "Close")
-    div.appendChild(button);
-
-}
+const printListProductsLocal = (productos) => {
+    while (listProducts.firstChild) {
+      listProducts.removeChild(listProducts.firstChild);
+    }
+    if (productos !== null) {
+      productos.forEach(e => {
+        templateCard.querySelector('h5').textContent = e.title
+        templateCard.querySelector('.price').textContent = `$${e.price}`
+        templateCard.querySelector('.detail').textContent = `Detalle: ${e.detail}`
+        templateCard.querySelector('.category').textContent = `${e.category.charAt(0).toUpperCase() + e.category.substr(1)}`
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone)
+      })
+      listProducts.appendChild(fragment);
+    }
+  }
 
 for (const e of categorias) {
     option = document.createElement('option');
@@ -58,4 +66,11 @@ for (const e of colores) {
 }
 
 
-productForm.addEventListener('submit', saveData);
+productForm.addEventListener('submit', e => {
+    saveData(e);
+    
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    printListProductsLocal(productListLocal);
+  })

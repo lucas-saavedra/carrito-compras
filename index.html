@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://use.fontawesome.com/02747bd8aa.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Carrito de compras</title>
@@ -17,7 +17,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Carrito de compras</a>
+                <a class="navbar-brand" href="#"><i class="fa fa-shopping-cart"></i></a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -33,94 +34,158 @@
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </nav>
     </header>
     <main>
-        <div class="container-fluid bg-dark py-3">
-            <h1 class=" text-white text-center">Carrito de compras</h1>
-        </div>
-        <div class="container-fluid py-3" id="saludoBienvenida">
-        </div>
-
-        <div class="container-fluid">
+        <div class="container-fluid bg-dark py-3 ">
             <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col" id="productos">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Categoria</th>
-                                                <th scope="col">Precio</th>
-                                                <th scope="col">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="listadoProductos">
+                <div class="col-md-8 d-flex justify-content-start">
+                    <h1 class="text-white text-center ">Carrito de compras</h1>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end">
+                    <button type="button" class="btn position-relative" data-bs-toggle="offcanvas"
+                        href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <i class="fa fa-shopping-cart fa-3x text-white"></i>
+                        <span id="showAmount"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </button>
 
-                                        </tbody>
-                                    </table>
-                                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid col-11 mx-auto my-3">
+            <div class="row">
+                <form class="d-flex mb-2">
+                    <input class="form-control me-2 " autocomplete="off" type="search" placeholder="Buscar un producto"
+                        aria-label="Search" id="searchProducts">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <div class="col-md-4">
+                    <label for="customRange1" class="form-label">Rango de precio</label>
+                    <input type="range" class="form-range" id="customRange1">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="categoryRadioButton">
+                                <template id="template-radio">
+                                    <input type="radio" id="html" name="fav_language" value="HTML">
+                                    <label for="html">HTML</label><br>
+                                </template>
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="listProducts">
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <template id="template-card">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Titulo</h5>
+                        <p class="price">Precio</p>
+                        <p class="category">Categoria</p>
+                        <button class="btn btn-dark button-item">Agregar</button>
+                    </div>
                 </div>
             </div>
-            <section class="container-fluid  py-2">
-                <h1 class="  text-center">Sus productos</h1>
-            </section>
-            <div class="row">
+        </template>
+
+
+
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Tus prouctos</h5>
+
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
                 <div class="col">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col" id="productos">
+                    <h6 id="mostrarTotal">
+                        Total: $
+                    </h6>
+                    <div class="row" id="listProductsCart">
+                        <!--  <div class="col" id="productos">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">ID</th>
+                                                
                                                 <th scope="col">Nombre</th>
-                                                <th scope="col">Categoria</th>
-                                                <th scope="col">Precio</th>
+                                                <th scope="col">Cantidad</th>
                                                 <th scope="col">Total</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="listadoProductosCarrito">
+                                        <tbody id="listProductsCart">
 
                                         </tbody>
                                         <tfoot>
 
                                             <tr class="table-secondary">
-                                                <td>
-                                                    Total
-                                                </td>
-                                                <td>
 
-                                                </td>
+                                                <th colspan="12" id="mostrarTotal">
+                                                    Total: $
+                                                </th>
 
-                                                <td>
 
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                                <td id="mostrarTotal">
-
-                                                </td>
                                             </tr>
 
                                         </tfoot>
                                     </table>
+                                </div> -->
+
+                        <template id="template-cart">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pelota</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Futbol</h6>
+                                    <p>Precio $2500</p>
+                                    <button class="btn btn-primary btn-sm btnAddProd">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm btnDeleteProd">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <span>Cantidad: 3</span>
                                 </div>
-                            </div>
-                        </div>
+                        </template>
+
+
+                        <!-- 
+                                        <th scope="row" class="id">Id</th>
+                                        <td scope="col">Nombre</td>
+                                        <td>Total</td>
+                                        <td>Cantidad</td>
+                                        <td>Categoria</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btnAddProd">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm btnDeleteProd">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </td> -->
+
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -130,8 +195,11 @@
     <script src="./js/objetos.js"></script>
     <script src="./js/productos.js"></script>
     <script src="./js/app.js"></script>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
     </script>
 </body>
+
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://use.fontawesome.com/02747bd8aa.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Agregar productos</title>
@@ -31,17 +31,17 @@
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </nav>
     </header>
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-md-10 mx-auto">
                 <section class="container py-5 newsForm px-lg-6 ">
                     <div class="">
                         <h1 class="display-5">Agregar un producto</h1>
-                        <form class="row py-1" action=""  id="productForm">
+                        <form class="row py-1" action="" id="productForm">
 
                             <div class="mb-3">
                                 <label for="title" class="form-label">Titulo</label>
@@ -82,17 +82,43 @@
                             </div>
 
                         </form>
-
                         <div id="notif">
-
+                            <template id="template-notif">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert" >
+                                    <h6 id="message"></h6>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    </button>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </section>
             </div>
+
+            <div class="col-md-8 mx-auto">
+
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="listProducts">
+
+
+                </div>
+            </div>
         </div>
     </div>
-     <script src="../js/objetos.js"></script>
-  <!--  <script src="../js/productos.js"></script> -->
+    <template id="template-card">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Titulo</h5>
+                    <p class="price">Precio</p>
+                    <p class="category">Categoria</p>
+                    <p class="detail">Detalle</p>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="../js/productos.js"></script>
+
+    <script src="../js/objetos.js"></script>
     <script src="../js/addProduct.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"

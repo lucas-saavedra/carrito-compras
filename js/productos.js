@@ -1,4 +1,5 @@
-
+const categorias = ['iluminacion', 'muebles', 'futbol', 'joyeria', 'acondicionamiento'];
+const colores = ['blanco', 'negro', 'gris', 'amarillo', 'rojo'];
 const productos = [{
     'id': 1,
     'title': 'Lampara',
