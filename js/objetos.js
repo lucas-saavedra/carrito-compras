@@ -15,6 +15,20 @@ class Producto {
     
 }
 
+class Cliente {
+    constructor ({id,name,lastName,email}){
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.shoppingCarts = [];
+    }
+    
+    addShoppingCart(cart){
+        this.shoppingCarts.push(cart);
+    }
+}
+
 class Carrito {
     constructor() {
         this.productos = [];
@@ -27,3 +41,4 @@ class Carrito {
         return precios.length > 0 ? precios.reduce((acc, value) => acc + value) : 0
     }
 }
+
