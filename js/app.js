@@ -99,7 +99,7 @@ const deleteProd = (idProducto) => {
 }
 /* renderizo las categorias para hacer el filtro(no esta terminado todavia) */
 const renderCategory = () => {
-  const categoryRadioButton = document.getElementById('radioPriceFilter');
+  const categoryRadioButton = document.getElementById('radioCatFilter');
   const templateRadio = document.getElementById('template-radio').content;
 
   for (const e of categorias) {

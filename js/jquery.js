@@ -68,7 +68,7 @@ $('#radioPriceFilter')
     .change(() => {
         printListProducts(filterOrderByPrice(productos, $('input[name="radioPrice"]:checked').val()))
     })
-$('#radioPriceFilter')
+$('#radioCatFilter')
     .change(() => {
         printListProducts(filterByCat(productos, $('input[name="category"]:checked').val()))
     })
@@ -77,4 +77,7 @@ $('#radioPriceFilter')
 $('#priceRangeDiv').change(() => {
     printListProducts(filterByPrice(productos, $('#priceRange').val()))
     $("#labelRange").html(`Rango de precio: $${$('#priceRange').val()} `);
+})
+$('#btnFilterReset').click(() => {
+    printListProducts(productos);
 })

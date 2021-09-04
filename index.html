@@ -29,9 +29,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./pages/addProduct.html">Agregar productos</a>
-                        </li>
+                       
                     </ul>
                 </div>
 
@@ -73,7 +71,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div id="radioPriceFilter">
+                            <div id="radioCatFilter">
                                 <template id="template-radio">
                                     <input type="radio" id="1" name="category" value="iluminacion">
                                     <label for="html">Iluminacion</label><br>
@@ -93,11 +91,13 @@
                                     <label for="html">Mayor precio</label><br>
                                     <input type="radio" id="min" name="radioPrice" value="min">
                                     <label for="css">Menor precio</label><br>
-                                    <button class="btn btn-primary" id="btnPriceReset">Mostrar</button>
+                                    
                                 </div>
 
                             </div>
                         </div>
+
+                        <button class="btn btn-primary" id="btnFilterReset">Resetear filtro</button>
                     </div>
 
                 </div>
