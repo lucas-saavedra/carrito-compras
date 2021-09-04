@@ -19,7 +19,7 @@ const productos = [{
   {
     'id': 3,
     'title': 'Sillon',
-    'price': 7000,
+    'price': 25000,
     'category': 'muebles',
     'color': 'gris',
     'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
@@ -27,7 +27,7 @@ const productos = [{
   {
     'id': 4,
     'title': 'Mesa de luz',
-    'price': 3000,
+    'price': 6000,
     'category': 'iluminacion',
     'color': 'amariilo',
     'detail': 'Lorem ipsum dolor sit amet consecteturLorem ipsum dolor sit amet consectetur'
@@ -67,3 +67,4 @@ const productos = [{
   },
 
 ];
+
