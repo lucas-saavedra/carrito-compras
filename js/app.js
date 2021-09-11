@@ -1,5 +1,3 @@
-let listaProd = document.querySelector("#listadoProductos");
-let listaProdCarrito = document.querySelector("#listProductsCart");
 const fragment = document.createDocumentFragment();
 
 let carrito = {};
@@ -28,8 +26,9 @@ const printListProducts = (productos) => {
 }
 
 /* renderizo el carrito en un off canvas */
-  const listProductsCart = document.getElementById('listProductsCart');
-  const templateCart = document.getElementById('template-cart').content;
+const listProductsCart = document.getElementById('listProductsCart');
+const templateCart = document.getElementById('template-cart').content;
+
 const printCart = (carrito) => {
 
   while (listProductsCart.firstChild) {
@@ -43,17 +42,31 @@ const printCart = (carrito) => {
       templateCart.querySelector('h6').textContent = `${e.category.charAt(0).toUpperCase() + e.category.substr(1)}`;
       templateCart.querySelector('.btnAddProd').setAttribute('onclick', `addProd(${e.id})`);
       templateCart.querySelector('.btnDeleteProd').setAttribute('onclick', `deleteProd(${e.id})`);
-     
+
       const clone = templateCart.cloneNode(true);
       fragment.appendChild(clone)
     })
     listProductsCart.appendChild(fragment);
   }
 
-  document.getElementById('mostrarTotal').textContent = `Total: $${showTotal(carrito)}`;
-  document.getElementById('showAmount').textContent = `${showAmount(carrito)}`;
+  showIconCart(carrito);
   localStorage.setItem('carrito', JSON.stringify(carrito));
 
+}
+
+const showIconCart = (carrito) => {
+  if (showAmount(carrito) == 0) {
+    /* jquery para animaciones*/
+    $('#cartIcon').hide();
+    $('.btnConfirm').hide();
+    document.getElementById('mostrarTotal').textContent = `Agregue algun producto de su interés...`;
+  } else {
+    $('#cartIcon').fadeIn();
+    $('#mostrarTotal').show();
+    $('.btnConfirm').show();
+    document.getElementById('mostrarTotal').textContent = `Total: $${showTotal(carrito)}`;
+    document.getElementById('showAmount').textContent = `${showAmount(carrito)}`;
+  }
 }
 
 /* me devuelve el valor total de todas las compras */
@@ -132,4 +145,5 @@ document.addEventListener('DOMContentLoaded', () => {
     carrito = JSON.parse(localStorage.getItem('carrito'))
     printCart(carrito);
   }
+  showIconCart(carrito);
 })

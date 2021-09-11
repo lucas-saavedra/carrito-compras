@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
-                <section class="container py-5 newsForm px-lg-6 ">
+                <section id="checkoutForm" class="container py-5  px-lg-6  ">
                     <div class="">
                         <h3 class="display-6">Aqui el detalle de su compra</h3>
                         <table class="table">
@@ -86,15 +86,19 @@
                                     placeholder="Ingrese el su Apeliido">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email"
-                                    aria-describedby="emailHelp">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required placeholder="Ingrese el su email">
                                 <div id="emailHelp" class="form-text">Asi podremos contactarte luego</div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="phone" aria-describedby="emailHelp">
-                                
+                                <label for="phone" class="form-label">Telefono</label>
+                                <input type="text" class="form-control" id="phone" required placeholder="Ingrese el su telefono">
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="adress" class="form-label">Dirección</label>
+                                <input type="adress" class="form-control" id="adress" required placeholder="Ingrese el su dirección" >
+
                             </div>
 
                             <div class="col-md-6">
@@ -105,33 +109,53 @@
                             </div>
 
                         </form>
-                        <div id="notif">
-                            <template id="template-notif">
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <h6 id="message"></h6>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    </button>
-                                </div>
+
+                    </div>
+                </section>
+                <section id="checkout" class="py-3">
+
+                    <div class="alert alert-success" role="alert" id="resume">
+                        <h4 class="alert-heading">Compra Realizada! Muchas Gracias Lucas Saavedra!</h4>
+                        <p id="msgAdress">Pronto nos estaremos comunicando con usted para coordinar el envío.</p>
+                        <hr>
+                        <p class="mb-3">Resumen de su compra:</p>
+                        <div id="resumeDiv">
+                            <template id="template-resume">
+                                <p>Pelota x 2 $5000</p>
                             </template>
                         </div>
+                        <p id="showTotalResume">Total: $10000 </p>
+                    </div>
+
+
+
+
+
+                   <!--  <div class="alert alert-info" role="alert">
+                        <h4 class="alert-heading">Estas fueron tus compras anteriores: </h4>
+                        <p>Pelota x 2, Lampara x 1 por un total de $1000</p>
+                        <p>Pelota x 2, Lampara x 1 por un total de $1000</p>
+                        <p>Pelota x 2, Lampara x 1 por un total de $1000</p>
+                    </div> -->
+                    <div class="mb-3  d-flex justify-content-center py-3 ">
+                        <a class="btn btn-primary" href="../index.html">Volver a la tienda</a>
                     </div>
                 </section>
             </div>
-
 
         </div>
     </div>
 
     <script src="../js/productos.js"></script>
     <script src="../js/objetos.js"></script>
-    <script src="../js/checkout.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../js/jquery.js"></script>
-   <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="../js/checkout.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
     </script>
-    
+
 </body>
 
 </html>

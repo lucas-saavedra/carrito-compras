@@ -16,11 +16,12 @@ class Producto {
 }
 
 class Cliente {
-    constructor ({id,name,lastName,email}){
+    constructor ({id,name,lastName,email,adress}){
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+        this.adress = adress;
         this.shoppingCarts = [];
     }
     

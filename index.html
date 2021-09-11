@@ -6,52 +6,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://use.fontawesome.com/02747bd8aa.js"></script>
+    <script src="https://kit.fontawesome.com/9767aaf51e.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Carrito de compras</title>
 </head>
+<style>
+
+</style>
 
 <body>
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><i class="fa fa-shopping-cart"></i></a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                        </li>
-                       
-                    </ul>
-                </div>
-
-            </div>
-        </nav>
-    </header>
     <main>
         <div class="container-fluid bg-dark py-3 ">
             <div class="row">
-                <div class="col-md-8 d-flex justify-content-start">
-                    <h1 class="text-white text-center ">Carrito de compras</h1>
-                </div>
-                <div class="col-md-4 d-flex justify-content-end">
-                    <button type="button" class="btn position-relative" data-bs-toggle="offcanvas"
-                        href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                        <i class="fa fa-shopping-cart fa-3x text-white"></i>
-                        <span id="showAmount"
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            0
-                        </span>
-                    </button>
+                <div class="d-flex justify-content-between">
 
+                    <h1 class="text-white text-center h1 py-1 px-1 align-middle">Carrito de compras</h1>
+                    <div class=" justify-content-end py-2 px-2 ">
+                        <button id="cartIcon" type="button" class="btn position-relative " data-bs-toggle="offcanvas"
+                            href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                            <i class="fa fa-shopping-cart fa-2x text-white"></i>
+                            <span id="showAmount"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,13 +46,28 @@
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
                 <div class="col-md-4">
-                    <div id="priceRangeDiv">
-                        <input type="range" class="form-range" step="1" id="priceRange" min="1000" max="50000">
-                        <label id='labelRange' for="customRange1" class="form-label"></label>
+                    <div class="card">
+                        <div class="card-header">
+                            FIltro por rango de precio </div>
+                        <div class="card-body">
+                            <div id="priceRangeDiv">
+                                <input type="range" class="form-range" step="1" id="priceRange" min="1000" max="50000">
+
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <label id='labelRange' for="customRange1" class="form-label"></label>
+                        </div>
                     </div>
 
+
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-header">
+                            Filtrar por categoria <button class="btn togleCat "><i
+                                    class="fas fa-arrow-up catIcon"></i></button>
+                        </div>
+                        <div class="card-body cardCat">
                             <div id="radioCatFilter">
                                 <template id="template-radio">
                                     <input type="radio" id="1" name="category" value="iluminacion">
@@ -83,20 +80,22 @@
 
                         <div class="card">
                             <div class="card-header">
-                                Ordenar lista por:
+                                Ordenar lista por: Precio <button class="btn toglePrice "><i
+                                        class="fas fa-arrow-up priceIcon"></i></button>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body cardPrice">
                                 <div id="radioPriceFilter">
                                     <input type="radio" id="max" name="radioPrice" value="max">
                                     <label for="html">Mayor precio</label><br>
                                     <input type="radio" id="min" name="radioPrice" value="min">
                                     <label for="css">Menor precio</label><br>
-                                    
                                 </div>
 
                             </div>
                         </div>
 
+                    </div>
+                    <div class=" d-flex justify-content-center py-3">
                         <button class="btn btn-primary" id="btnFilterReset">Resetear filtro</button>
                     </div>
 
