@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/9767aaf51e.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/wStyle.css">
     <title>Carrito de compras</title>
 </head>
 <style>
@@ -40,65 +41,124 @@
 
         <div class="container-fluid col-11 mx-auto my-3">
             <div class="row">
+                <div>
+                    <div class="card mb-3 mx-auto text-dark bg-light " style="max-width: 25em;"
+                        id="wheatherCard">
+                        <div class="row g-0">
+                            <div class="col-4">
+                                <img id="wImg" class="card-img-top rounded-start" alt="wheather">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body px-0 py-0" id="wBody">
+                                    <h5 id="wName" class="card-title h6 rounded py-1"></h5>
+                                    <div class="">
+                                        <p class="h6 text-center " id="wRegionCountry"></p>
+                                        <p class="text-center">Temperatura: <span id="wTemp">
+                                            </span> Cº</p>
+                                        <p class="text-center"> <span id="wDescription"></span>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <form class="d-flex mb-2">
                     <input class="form-control me-2 " autocomplete="off" type="search" placeholder="Buscar un producto"
                         aria-label="Search" id="searchProducts">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            FIltro por rango de precio </div>
-                        <div class="card-body">
-                            <div id="priceRangeDiv">
-                                <input type="range" class="form-range" step="1" id="priceRange" min="1000" max="50000">
-
-                            </div>
-
-                        </div>
-                        <div class="card-footer">
-                            <label id='labelRange' for="customRange1" class="form-label"></label>
-                        </div>
-                    </div>
-
-
-                    <div class="card">
-                        <div class="card-header">
-                            Filtrar por categoria <button class="btn togleCat "><i
-                                    class="fas fa-arrow-up catIcon"></i></button>
-                        </div>
-                        <div class="card-body cardCat">
-                            <div id="radioCatFilter">
-                                <template id="template-radio">
-                                    <input type="radio" id="1" name="category" value="iluminacion">
-                                    <label for="html">Iluminacion</label><br>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
+                    <form action="" id="productFilter">
 
                         <div class="card">
                             <div class="card-header">
-                                Ordenar lista por: Precio <button class="btn toglePrice "><i
-                                        class="fas fa-arrow-up priceIcon"></i></button>
-                            </div>
-                            <div class="card-body cardPrice">
-                                <div id="radioPriceFilter">
-                                    <input type="radio" id="max" name="radioPrice" value="max">
-                                    <label for="html">Mayor precio</label><br>
-                                    <input type="radio" id="min" name="radioPrice" value="min">
-                                    <label for="css">Menor precio</label><br>
-                                </div>
+                                Filtro por rango de precio <button type="button" class="btn toglePriceRange "><i
+                                        class="fas fa-arrow-up priceRangeIcon"></i></button></div>
+                            <div class="card-body cardPriceRange" id="bodyfilterPrice">
+                                <template id="bodyfilterPriceTemplate">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="priceFilter">
+                                        <label class="form-check-label ">
+
+                                        </label>
+                                        <span class="badge bg-secondary ">10</span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="priceFilter">
+                                        <label class="form-check-label ">
+
+                                        </label>
+                                        <span class="badge bg-secondary ">10</span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="priceFilter">
+                                        <label class="form-check-label ">
+
+                                        </label>
+                                        <span class="badge bg-secondary ">4</span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="priceFilter">
+                                        <label class="form-check-label ">
+
+                                        </label>
+                                        <span class="badge bg-secondary ">4</span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="priceFilter">
+                                        <label class="form-check-label ">
+
+                                        </label>
+                                        <span class="badge bg-secondary "></span>
+                                    </div>
+                                </template>
 
                             </div>
+
                         </div>
 
-                    </div>
-                    <div class=" d-flex justify-content-center py-3">
-                        <button class="btn btn-primary" id="btnFilterReset">Resetear filtro</button>
-                    </div>
 
+                        <div class="card">
+                            <div class="card-header">
+                                Filtrar por categoria <button type="button" class="btn togleCat "><i
+                                        class="fas fa-arrow-up catIcon"></i></button>
+                            </div>
+                            <div class="card-body cardCat">
+                                <div id="radioCatFilter">
+                                    <input type="checkbox" name="category" value="all">
+                                    <label for="all">Todos</label><br>
+                                    <template id="template-radio">
+                                        <input type="checkbox" name="category" value="iluminacion">
+                                        <label for="html">Iluminacion</label><br>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    Ordenar lista por: Precio <button type="button" class="btn toglePrice "><i
+                                            class="fas fa-arrow-up priceIcon"></i></button>
+                                </div>
+                                <div class="card-body cardPrice">
+                                    <div id="radioPriceFilter">
+                                        <input type="radio" id="max" name="priceOrder" value="max">
+                                        <label for="max">Mayor precio</label><br>
+                                        <input type="radio" id="min" name="priceOrder" value="min">
+                                        <label for="min">Menor precio</label><br>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class=" d-flex justify-content-around py-3">
+                            <button class="btn btn-primary" type="reset" id="btnFilterReset">Resetear filtro</button>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="col-md-8">
@@ -112,18 +172,23 @@
             </div>
 
         </div>
-        <template id="template-card">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>Titulo</h5>
-                        <p class="price">Precio</p>
-                        <p class="category">Categoria</p>
-                        <button class="btn btn-dark button-item">Agregar</button>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <template id="template-card">
+                <div class="col">
+                    <div class="card card h-100">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h5 class="h3">Titulo</h5>
+                            <p class="price h4">Precio</p>
+                            <p class="h5"> <span class="category badge bg-primary">Categoria</span> </p>
+                            <button class="btn btn-dark button-item">Agregar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </template>
+            </template>
+
+        </div>
+
 
 
 
@@ -172,9 +237,9 @@
 
 
     <script src="./js/objetos.js"></script>
-    <script src="./js/productos.js"></script>
-    <script src="./js/app.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./js/wheather.js"></script>
+    <script src="./js/app.js"></script>
     <script src="./js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">

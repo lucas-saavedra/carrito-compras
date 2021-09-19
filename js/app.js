@@ -1,6 +1,25 @@
-const fragment = document.createDocumentFragment();
+document.addEventListener('DOMContentLoaded', () => {
+  // la llamada a la api falsa
+  $.get('../js/productosFakeApi.json', (res, estado) => {
+    if (estado === "success") {
+      printListProducts(res.productos);
+      localStorage.setItem('productos', JSON.stringify(res.productos))
+      renderCategory(res.productos);
+    }
+  });
 
+  renderPricesFilter(JSON.parse(localStorage.getItem('productos')));
+  if (localStorage.getItem('carrito')) {
+    carrito = JSON.parse(localStorage.getItem('carrito'))
+    printCart(carrito);
+  }
+  showIconCart(carrito);
+})
+
+const fragment = document.createDocumentFragment();
 let carrito = {};
+
+
 
 /* rendirezo la lista de productos */
 const printListProducts = (productos) => {
@@ -15,6 +34,7 @@ const printListProducts = (productos) => {
     productos.forEach(e => {
       templateCard.querySelector('h5').textContent = e.title
       templateCard.querySelector('.price').textContent = `$${e.price}`
+      templateCard.querySelector('img').setAttribute('src', `${e.url}`);
       templateCard.querySelector('.category').textContent = `${e.category.charAt(0).toUpperCase() + e.category.substr(1)}`
       templateCard.querySelector('.button-item').dataset.id = e.id;
       templateCard.querySelector('.button-item').setAttribute('onclick', `addProd(${e.id})`);
@@ -76,7 +96,6 @@ const showTotal = carrito => {
     price
   }) => acc + price * amount, 0);
   return nTotal
-
 }
 /* me devuelve la cantidad total de productos y lo renderizo en el icono del carrito */
 const showAmount = carrito => {
@@ -99,7 +118,7 @@ const addProd = (idProducto) => {
   };
   printCart(carrito);
 }
-
+//funcion para quitar productos de carrito
 const deleteProd = (idProducto) => {
   let producto = productos.find((e) => e.id === idProducto);
   carrito[producto.id].amount--;
@@ -111,9 +130,16 @@ const deleteProd = (idProducto) => {
   printCart(carrito);
 }
 /* renderizo las categorias para hacer el filtro(no esta terminado todavia) */
-const renderCategory = () => {
+const renderCategory = (productos) => {
   const categoryRadioButton = document.getElementById('radioCatFilter');
   const templateRadio = document.getElementById('template-radio').content;
+  let categorias = [];
+  productos.forEach(e => {
+    categorias.push(e.category)
+  });
+  categorias = categorias.filter((item, index) => {
+    return categorias.indexOf(item) === index;
+  })
 
   for (const e of categorias) {
     templateRadio.querySelector('input').setAttribute('value', e);
@@ -128,6 +154,57 @@ const renderCategory = () => {
 }
 
 
+const showAmountByPrice = (productos, priceBottom, priceTop) => {
+  const productosFilter = Object.values(productos).filter(e => e.price >= priceBottom && e.price <= priceTop)
+  return productosFilter.length;
+}
+
+//renderizo el filtro de los rangos de precios, que ademas cuenta los productos en cada rango
+const renderPricesFilter = (productos) => {
+
+  const bodyfilterPrice = document.getElementById('bodyfilterPrice');
+  const template = document.getElementById('bodyfilterPriceTemplate').content;
+
+  let productosPrices = [];
+  Object.values(productos).forEach(e => {
+    productosPrices.push(e.price)
+  });
+
+  productosPrices = productosPrices.sort((a, b) => {
+    return a - b;
+  })
+
+  const priceBottom = productosPrices[Math.ceil(productosPrices.length * 0.3)];
+  const priceMiddle = productosPrices[Math.ceil(productosPrices.length * 0.5)];
+  const priceTop = productosPrices[Math.ceil(productosPrices.length * 0.7)];
+  const last = productosPrices[productosPrices.length - 1];
+
+
+  template.querySelectorAll('label')[0].textContent = `Hasta $${priceBottom}`;
+  template.querySelectorAll('label')[1].textContent = `$${priceBottom} a $${priceMiddle}`;
+  template.querySelectorAll('label')[2].textContent = `$${priceMiddle} a $${priceTop}`;
+  template.querySelectorAll('label')[3].textContent = `De $${priceTop} en adelante`;
+  template.querySelectorAll('label')[4].textContent = `Todos`;
+
+  template.querySelectorAll('span')[0].textContent = showAmountByPrice(productos, 0, priceBottom);
+  template.querySelectorAll('span')[1].textContent = showAmountByPrice(productos, priceBottom, priceMiddle);
+  template.querySelectorAll('span')[2].textContent = showAmountByPrice(productos, priceMiddle, priceTop);
+  template.querySelectorAll('span')[3].textContent = showAmountByPrice(productos, priceTop, last);
+  template.querySelectorAll('span')[4].textContent = productos.length;
+
+
+  template.querySelectorAll('input')[0].setAttribute('value', `0-${priceBottom }`)
+  template.querySelectorAll('input')[1].setAttribute('value', `${priceBottom}-${priceMiddle }`)
+  template.querySelectorAll('input')[2].setAttribute('value', `${priceMiddle}-${priceTop }`)
+  template.querySelectorAll('input')[3].setAttribute('value', `${priceTop}-${last}`)
+  template.querySelectorAll('input')[4].setAttribute('value', `all`)
+
+
+  const clone = template.cloneNode(true);
+  fragment.appendChild(clone)
+  bodyfilterPrice.appendChild(fragment)
+
+}
 
 /* un live search para bucar el producto con solo ir escribiendo */
 //filtros
@@ -135,15 +212,4 @@ const input = document.getElementById('searchProducts')
 input.addEventListener('keyup', () => {
   const filterProducts = productos.filter(e => e.title.toLowerCase().indexOf(input.value.toLowerCase()) !== -1);
   printListProducts(filterProducts);
-})
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  printListProducts(productos);
-  renderCategory();
-  if (localStorage.getItem('carrito')) {
-    carrito = JSON.parse(localStorage.getItem('carrito'))
-    printCart(carrito);
-  }
-  showIconCart(carrito);
 })
