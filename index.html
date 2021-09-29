@@ -22,6 +22,27 @@
     <main>
         <div class="container-fluid bg-dark py-3 ">
             <div class="row">
+                <div class="d-flex justify-content-end">
+                    <div class="card mb-3 text-light bg-dark" style="width: 400px;" id="wheatherCard">
+                        <div class="row g-0">
+                            <div class="col-2">
+                                <img id="wImg" class="img-fluid rounded-start" alt="wheather">
+                            </div>
+                            <div class="col-10">
+                                <div class="card-body py-0 px-3" id="wBody">
+                                    <h5 id="wName" class="card-title h6 rounded"></h5>
+                                    <span class="card-text" id="wTemp"></span>
+                                    <span class="card-text"><small class="text-muted text-light " id="wDescription">Last
+                                        </small>
+                                        </sapn>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="d-flex justify-content-between">
 
                     <h1 class="text-white text-center h1 py-1 px-1 align-middle">Carrito de compras</h1>
@@ -41,30 +62,10 @@
 
         <div class="container-fluid col-11 mx-auto my-3">
             <div class="row">
-                <div>
-                    <div class="card mb-3 mx-auto text-dark bg-light " style="max-width: 25em;"
-                        id="wheatherCard">
-                        <div class="row g-0">
-                            <div class="col-4">
-                                <img id="wImg" class="card-img-top rounded-start" alt="wheather">
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body px-0 py-0" id="wBody">
-                                    <h5 id="wName" class="card-title h6 rounded py-1"></h5>
-                                    <div class="">
-                                        <p class="h6 text-center " id="wRegionCountry"></p>
-                                        <p class="text-center">Temperatura: <span id="wTemp">
-                                            </span> Cº</p>
-                                        <p class="text-center"> <span id="wDescription"></span>
-                                        </p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name='dark' id="darkMode">
+                    <label class="form-check-label">Dark Mode</label>
                 </div>
-
                 <form class="d-flex mb-2">
                     <input class="form-control me-2 " autocomplete="off" type="search" placeholder="Buscar un producto"
                         aria-label="Search" id="searchProducts">
@@ -241,6 +242,7 @@
     <script src="./js/wheather.js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/jquery.js"></script>
+    <script src="./js/darkmode.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
     </script>

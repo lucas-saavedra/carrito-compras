@@ -1,0 +1,21 @@
+header {
+  background-color: #6c757d; }
+
+body,
+i,
+.btn-close,
+thead,
+tbody,
+#showTotal,
+.button-item,
+.offcanvas,
+.card {
+  color: #f7f7f7; }
+
+body,
+.card,
+.offcanvas {
+  background-color: #212529; }
+
+.button-item {
+  background-color: #198754; }

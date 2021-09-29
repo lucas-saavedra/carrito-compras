@@ -1,0 +1,27 @@
+@import 'paleta.scss';
+
+header {
+    background-color: $gris;
+}
+
+body,
+i,
+.btn-close,
+thead,
+tbody,
+#showTotal,
+.button-item,
+.offcanvas,
+.card {
+    color: $blanco;
+}
+
+body,
+.card,
+.offcanvas {
+    background-color: $negro;
+}
+
+.button-item {
+    background-color: $verde;
+}

@@ -31,8 +31,7 @@ $(document).ready(function () {
 
 const printCard = (weather) => {
   document.getElementById('wImg').setAttribute('src', `${weather.img}`);
-  document.getElementById('wName').textContent = `${weather.name} `;
-  document.getElementById('wRegionCountry').textContent = `${weather.region}, ${weather.country} `;
-  document.getElementById('wTemp').textContent = `${weather.temp_c}`;
+  document.getElementById('wName').textContent = `${weather.name}, ${weather.region}, ${weather.country} `;
+  document.getElementById('wTemp').textContent = `${weather.temp_c}º`;
   document.getElementById('wDescription').textContent = `${weather.weather_descriptions}`;
 }
