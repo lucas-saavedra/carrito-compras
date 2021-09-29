@@ -2,3 +2,9 @@ header {
   background-color: #212529; }
   header #wheatherCard {
     color: #f7f7f7; }
+
+#liveToast {
+  background-color: #198754; }
+
+#toastMsg {
+  color: #f7f7f7; }

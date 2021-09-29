@@ -19,3 +19,9 @@ body,
 
 .button-item {
   background-color: #198754; }
+
+#liveToast {
+  background-color: #f7f7f7; }
+
+#toastMsg {
+  color: #212529; }
