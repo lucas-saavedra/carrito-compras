@@ -1,9 +1,9 @@
 const fragment = document.createDocumentFragment();
-const listProductsCart = document.getElementById('listCart');
-const templateCart = document.getElementById('template-checkout').content;
 
+//renderizo el resumen en una tabla
 const printCartCheckout = (carrito) => {
-
+  const listProductsCart = document.getElementById('listCart');
+  const templateCart = document.getElementById('template-checkout').content;
   while (listProductsCart.firstChild) {
     listProductsCart.removeChild(listProductsCart.firstChild);
   }
@@ -20,9 +20,9 @@ const printCartCheckout = (carrito) => {
     listProductsCart.appendChild(fragment);
   }
   document.getElementById('showTotal').textContent = `Total: $${showTotal(carrito)}`;
-
 }
 /* uso jquery para tomar los datos del formulario */
+
 $('#productForm').submit(saveData = (e) => {
   let listClients = {};
   e.preventDefault();
@@ -39,18 +39,21 @@ $('#productForm').submit(saveData = (e) => {
   if (localStorage.getItem('listClients') !== null) {
     listClients = JSON.parse(localStorage.getItem('listClients'))
   }
-  printResume(carrito, cliente);
+
+  let shoppingAmount = 0; //cuento la canitdad de veces que un usuario realizó compras
 
   //Agrupo las compras de cada usuario indexado por su email
   if (listClients.hasOwnProperty(cliente.email)) {
     listClients[cliente.email].shoppingCarts.push(carrito)
+    shoppingAmount = listClients[cliente.email].shoppingCarts.length;
   } else {
-
+    shoppingAmount = 1;
     cliente.addShoppingCart(carrito);
     listClients[cliente.email] = {
       ...cliente
     };
   }
+  printResume(carrito, cliente, shoppingAmount);
   localStorage.setItem('listClients', JSON.stringify(listClients));
   localStorage.removeItem('carrito');
 
@@ -59,23 +62,23 @@ $('#productForm').submit(saveData = (e) => {
     'Gracias por confiar en nosotros, su pedido le llegará pronto',
     'success'
   )
-  
+
   //jquery para animaciones
   $('#checkoutForm').fadeOut();
   $('#checkout').fadeIn();
 });
 
 
-const resumeDiv = document.getElementById('resumeDiv');
-const templateResume = document.getElementById('template-resume').content;
 
-const printResume = (carrito, cliente) => {
-
+//renderizo el resumen de la compra
+const printResume = (carrito, cliente, shoppingAmount) => {
+  const resumeDiv = document.getElementById('resumeDiv');
+  const templateResume = document.getElementById('template-resume').content;
   $('#checkout').show();
   if (carrito !== null) {
     resume.querySelector('#resume h4').textContent = `Compra Realizada! Muchas gracias ${cliente.name} ${cliente.lastName} `;
     resume.querySelector('#msgAdress').textContent =
-      `Pronto nos estaremos comunicando con usted para coordinar el envío a ${cliente.adress}`;
+      `Pronto nos estaremos comunicando con usted para coordinar el envío a ${cliente.adress}, y pronto le estará llegando un mensaje a ${cliente.email}`;
     Object.values(carrito).forEach(e => {
       templateResume.querySelector('p').textContent = ` ${e.title} x ${e.amount} unidad/es, por un valor de: $${e.price} c/u`;
       const clone = templateResume.cloneNode(true);
@@ -83,14 +86,12 @@ const printResume = (carrito, cliente) => {
     });
     resumeDiv.appendChild(fragment);
     document.getElementById('showTotalResume').textContent = `Total: $${showTotal(carrito)}`;
+    document.getElementById('showTotalshopping').textContent = `Compras realizadas: ${shoppingAmount}`;
 
   }
-
 }
 
-
-
-
+//me devuelve el total de la copmpra
 const showTotal = carrito => {
   if (carrito == null) {
     return 0
@@ -102,12 +103,9 @@ const showTotal = carrito => {
   return nTotal
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const carrito = JSON.parse(localStorage.getItem('carrito'));
   printCartCheckout(carrito);
-
   /*Jquery para animaciones */
   $('#checkout').hide();
-
 })

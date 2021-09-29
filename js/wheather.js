@@ -11,7 +11,9 @@ const getWeather = (url) => {
         weather_descriptions: res.current.weather_descriptions
       }
       /*guardo la informacion en el storage porque la api me da muy 
-      pocas peticiones para usar, entonces no gasta en peticiones*/
+      pocas peticiones para usar, entonces no es necesario 
+      hacer tantas llamadas en cada actualizacion de la pagina, entiendo que 
+      en un proyecto real no es necesario */
       localStorage.setItem('weather', JSON.stringify(weather))
       printCard(weather)
     }
@@ -28,7 +30,7 @@ $(document).ready(function () {
 });
 
 
-
+//renderizo la tarjeta del tiempo
 const printCard = (weather) => {
   document.getElementById('wImg').setAttribute('src', `${weather.img}`);
   document.getElementById('wName').textContent = `${weather.name}, ${weather.region}, ${weather.country} `;

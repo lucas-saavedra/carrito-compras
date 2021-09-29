@@ -1,5 +1,5 @@
 const productos = JSON.parse(localStorage.getItem('productos'));
-
+//ordeno de mayor a menos o viceversa
 const filterOrderByPrice = (productos, orderType) => {
     return productos.sort((a, b) => {
         const bool = orderType === 'min' ? true : false
@@ -13,26 +13,36 @@ const filterOrderByPrice = (productos, orderType) => {
         return 0;
     });
 }
-//ejecuto la funcion que combina y filtra la lista
+//uso un trigger para poder combinar el search con el formulario de filtro
+$('#searchProducts').on('search', () => {
+    $('#productFilter').trigger('change')
+})
+
+// funcion que combina y filtra la lista
 const formFilter = (filters, productos) => {
+    console.log(filters);
     let productosFiltered = productos;
     let {
         category,
         priceRange,
-        priceOrder
+        priceOrder,
+        search
     } = filters;
     let list = [];
+    //filtro con el buscador search
+    productosFiltered = productosFiltered.filter(e => e.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+    //por rango
     if (priceRange !== undefined && priceRange !== 'all') {
         //separo los valores que cargué en el 'value' por ejemplo '0-5000' en 0 y 5000
         priceRange = priceRange.split(['-']);
-        productosFiltered = Object.values(productos).filter(e => e.price >= priceRange[0] && e.price <= priceRange[1])
+        productosFiltered = Object.values(productosFiltered).filter(e => e.price >= priceRange[0] && e.price <= priceRange[1])
 
     }
     const isAll = (category) => {
         category = category.filter(e => e === 'all')
         return category;
     }
-
+    //por categoria
     if (category.length !== 0 && isAll(category).length == 0) {
 
         category.forEach(category => {
@@ -47,10 +57,10 @@ const formFilter = (filters, productos) => {
         productosFiltered = list;
 
     }
+    //por mayor o menor precio
     if (priceOrder !== undefined) {
         productosFiltered = filterOrderByPrice(productosFiltered, priceOrder)
     }
-
     printListProducts(productosFiltered);
 
 }
@@ -65,26 +75,28 @@ $('#productFilter').change((e) => {
     const filters = {
         category: selectedCategory,
         priceRange: $('input[name="priceFilter"]:checked').val(),
-        priceOrder: $('input[name="priceOrder"]:checked').val()
+        priceOrder: $('input[name="priceOrder"]:checked').val(),
+        search: $('#searchProducts').val()
     }
     formFilter(filters, productos)
 })
 
+
 $('#btnFilterReset').click(() => {
     printListProducts(productos);
-
 })
-
+// pequeña animacion de acordeon que esconde o hace aparecer la tarjeta de cada filtro
+const tCat = (card, icon) => {
+    $(`.${card}`).toggle('fast');
+    $(`.${icon}`).toggleClass("fa-arrow-up fa-arrow-down")
+}
 $(".togleCat").click(() => {
-    $(".cardCat").toggle('fast');
-    $(".catIcon").toggleClass("fa-arrow-up fa-arrow-down")
+    tCat('cardCat', 'catIcon')
 });
 
 $(".toglePrice").click(() => {
-    $(".cardPrice").toggle('fast');
-    $(".priceIcon").toggleClass("fa-arrow-up fa-arrow-down")
+    tCat('cardPrice', 'priceIcon')
 });
 $(".toglePriceRange").click(() => {
-    $(".cardPriceRange").toggle('fast');
-    $(".priceRangeIcon").toggleClass("fa-arrow-up fa-arrow-down")
+    tCat('cardPriceRange', 'priceRangeIcon')
 });

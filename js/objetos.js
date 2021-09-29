@@ -1,22 +1,28 @@
 class Producto {
-    constructor(id,title,detail, price, category, color) {
+    constructor(id, title, detail, price, category, color) {
         this.id = id;
         this.title = title;
         this.detail = detail;
         this.price = parseFloat(price);
-        this.stock =null;
+        this.stock = null;
         this.category = category;
         this.color = color;
         this.amount = 0;
     }
-    addStock(stock){
+    addStock(stock) {
         this.stock = stock;
     }
-    
+
 }
 
 class Cliente {
-    constructor ({id,name,lastName,email,adress}){
+    constructor({
+        id,
+        name,
+        lastName,
+        email,
+        adress
+    }) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -24,8 +30,8 @@ class Cliente {
         this.adress = adress;
         this.shoppingCarts = [];
     }
-    
-    addShoppingCart(cart){
+
+    addShoppingCart(cart) {
         this.shoppingCarts.push(cart);
     }
 }
@@ -42,4 +48,3 @@ class Carrito {
         return precios.length > 0 ? precios.reduce((acc, value) => acc + value) : 0
     }
 }
-
